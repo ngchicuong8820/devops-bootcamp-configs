@@ -1,20 +1,11 @@
-# 🚀 DevOps Bootcamp Capstone Project
-
-[![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-red?logo=jenkins)](http://32.195.232.187:9080)
-[![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker)](https://hub.docker.com/u/ngchicuong8820)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestration-blue?logo=kubernetes)](https://kubernetes.io)
-[![Grafana](https://img.shields.io/badge/Grafana-Monitoring-orange?logo=grafana)](http://32.195.232.187:3001)
-[![Prometheus](https://img.shields.io/badge/Prometheus-Metrics-red?logo=prometheus)](http://32.195.232.187:9090)
+## 🚀 DevOps Bootcamp Capstone Project
 
 ## 📋 Project Overview
-
-A production-grade DevOps implementation of a **TodoList Application** built with **Next.js** (Frontend) and **Express.js** (Backend), deployed on **AWS EC2** with full CI/CD automation, container orchestration, and observability stack.
-
----
+ A production-grade DevOps implementation of a TodoList Application built with Next.js (Frontend) and Express.js (Backend), deployed on AWS EC2 with full CI/CD automation, container orchestration, and observability stack.
 
 ## 🏗️ Architecture Overview
-```mermaid
-flowchart TD
+
+[Architecture-Overview.txt](https://github.com/user-attachments/files/27472891/Architecture-Overview.txt)
                     ┌──────────────────────────────────────┐
                     │           GitHub Repositories        │
                     │  frontend-repo  │  backend-repo      │
@@ -48,21 +39,18 @@ flowchart TD
         │  todolist_dev        │
         │  todolist_prod       │
         └──────────────────────┘
----
 
-# ## 🔗 Repositories
+## 🔗 Repositories
 
-$$
 | Repository | Description | Link |
 |------------|-------------|------|
 | **devops-bootcamp-configs** | DevOps configurations (this repo) | [Link](https://github.com/ngchicuong8820/devops-bootcamp-configs) |
 | **todolist-backend-api** | Express.js Backend API | [Link](https://github.com/ngchicuong8820/devops-bootcamp-todolist-backend-api) |
 | **todolist-frontend** | Next.js Frontend | [Link](https://github.com/ngchicuong8820/devops-bootcamp-todolist-frontend) |
-$$
 
 ---
 
-# ## 🌐 Demo URLs
+🌐 Demo URLs
 | Service | URL | Description |
 |---------|-----|-------------|
 | 🖥️ Frontend | [http://32.195.232.187:3000](http://32.195.232.187:3000) | TodoList Web App |
@@ -73,7 +61,7 @@ $$
 
 ---
 
-# ## 🛠️ Tech Stack
+## 🛠️ Tech Stack
 | Category | Technology | Purpose |
 |----------|-----------|---------|
 | **Cloud** | AWS EC2 | Virtual Machines |
@@ -90,11 +78,9 @@ $$
 
 ---
 
+## 📁 Repository Structure
 
-# ## 📁 Repository Structure
-```mermaid
-flowchart TD
-devops-bootcamp-configs/
+[Upldevops-bootcamp-configs/
 ├── 📁 docker/
 │   └── docker-compose.dev.yml        # Dev environment
 ├── 📁 k8s/
@@ -114,7 +100,8 @@ devops-bootcamp-configs/
 ├── 📁 monitoring/
 │   ├── 📁 prometheus/
 │   │   └── prometheus.yml            # Prometheus scrape config
-│   ├── 📁 loki/
+│   ├── 📁 loki/[Pipeline Stages.txt](https://github.com/user-attachments/files/27473062/Pipeline.Stages.txt)
+
 │   │   └── loki-config.yml           # Loki configuration
 │   ├── 📁 promtail/
 │   │   └── promtail-config.yml       # Promtail configuration
@@ -122,43 +109,43 @@ devops-bootcamp-configs/
 │       ├── infrastructure-dashboard.json
 │       └── application-dashboard.json
 ├── docker-compose.monitoring.yml     # Monitoring stack
-└── README.md
----
+└── README.mdoading Repository Structure.txt…]()
 
 ## 🔄 CI/CD Pipeline
-```mermaid
-flowchart TD
+
 ** Pipeline Stages**
-─────────┐   ┌───────┐   ┌──────────────────────┐
+
+[Uploading Pipeline Stages.txt…]()
+
+┌─────────┐   ┌───────┐   ┌──────────────────────┐
 │ Source  │──▶│ Build │──▶│ Test & Quality Gate   │
 └─────────┘   └───────┘   │ (Parallel)            │
-│ ├── Unit Test         │
-│ ├── Linter            │
-│ └── Dependency Check  │
-└──────────┬────────────┘
-│
-┌──────────▼────────────┐
-│   Push to Docker Hub  │
-└──────────┬────────────┘
-│
-┌──────────▼────────────┐
-│   Image Scan (Trivy)  │
-└──────────┬────────────┘
-│
-┌──────────▼────────────┐
-│   Deploy Dev          │
-│   (Docker Compose)    │
-└──────────┬────────────┘
-│
-┌──────────▼────────────┐
-│   Manual Approval     │
-└──────────┬────────────┘
-│
-┌──────────▼────────────┐
-│   Deploy Production   │
-│   (Kubernetes)        │
-└───────────────────────┘
-
+                          │ ├── Unit Test         │
+                          │ ├── Linter            │
+                          │ └── Dependency Check  │
+                          └──────────┬────────────┘
+                                     │
+                          ┌──────────▼────────────┐
+                          │   Push to Docker Hub  │
+                          └──────────┬────────────┘
+                                     │
+                          ┌──────────▼────────────┐
+                          │   Image Scan (Trivy)  │
+                          └──────────┬────────────┘
+                                     │
+                          ┌──────────▼────────────┐
+                          │   Deploy Dev          │
+                          │   (Docker Compose)    │
+                          └──────────┬────────────┘
+                                     │
+                          ┌──────────▼────────────┐
+                          │   Manual Approval     │
+                          └──────────┬────────────┘
+                                     │
+                          ┌──────────▼────────────┐
+                          │   Deploy Production   │
+                          │   (Kubernetes)        │
+                          └───────────────────────┘
 ### Key Features
 - ✅ **Webhook trigger**: Auto-build on push/PR
 - ✅ **Parallel stages**: Test + Lint + Dependency Check
