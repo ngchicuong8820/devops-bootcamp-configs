@@ -1,4 +1,5 @@
-
+```mermaid
+flowchart TD
 # 🚀 DevOps Bootcamp Capstone Project
 
 [![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-red?logo=jenkins)](http://32.195.232.187:9080)
