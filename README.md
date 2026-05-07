@@ -1,6 +1,3 @@
-```mermaid
-flowchart TD
-
 # 🚀 DevOps Bootcamp Capstone Project
 
 [![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-red?logo=jenkins)](http://32.195.232.187:9080)
@@ -16,6 +13,7 @@ A production-grade DevOps implementation of a **TodoList Application** built wit
 ---
 
 ## 🏗️ Architecture Overview
+```mermaid
 
                     ┌──────────────────────────────────────┐
                     │           GitHub Repositories        │
@@ -94,6 +92,7 @@ $$
 
 
 # ## 📁 Repository Structure
+```mermaid
 devops-bootcamp-configs/
 ├── 📁 docker/
 │   └── docker-compose.dev.yml        # Dev environment
@@ -126,6 +125,7 @@ devops-bootcamp-configs/
 ---
 
 ## 🔄 CI/CD Pipeline
+```mermaid
 ** Pipeline Stages**
 ─────────┐   ┌───────┐   ┌──────────────────────┐
 │ Source  │──▶│ Build │──▶│ Test & Quality Gate   │
