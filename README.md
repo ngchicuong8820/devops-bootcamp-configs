@@ -5,23 +5,43 @@
 
 ## 🏗️ Architecture Overview
 
-```text
-Architecture-Overview.txt                  | GitHub
-Repositories || frontend-repo | backend-repo |
-[  Sơ đồ chi tiết của bạn tại đây ]        | Webhook | ▼▼
-                                             | Jenkins CI/CD || (port 9080) |||| Source
-→ Build → Test+Lint+DepCheck || → ImageScan → Push → Deploy Dev || → Approval → Deploy Prod |
-[ Sơ đồ chi tiết của bạn tại đây ]        | ▼▼▼▼▼
+```mermaid
+graph TD
+    subgraph Repositories [GitHub Repositories]
+        FR[frontend-repo]
+        BR[backend-repo]
+    end
 
-[ Sơ đồ chi tiết của bạn tại đây ]        | Dev
-Environment|| K8s (Kind) || Monitoring || Docker Compose || Production || Stack |||||||| todolist-backend || backend x3 ||
-[ Sơ đồ chi tiết của bạn tại đây ]
-Prometheus || todolist-frontend | frontend x2 || Grafana |
-[ Sơ đồ chi tiết của bạn tại đây ]
-                                 | Loki+Promtail |||                     | DB EC2 || PostgreSQL ||
-todolist_dev || todolist_prod |
-[ Sơ đồ chi tiết của bạn tại đây ]
-\```
+    Repositories -- Webhook --> Jenkins[Jenkins CI/CD<br>Port 9080]
+
+    subgraph CI_CD [Pipeline Execution]
+        Jenkins --> Build[Source → Build → Test+Lint+DepCheck]
+        Build --> Scan[Image Scan Trivy]
+        Scan --> Push[Push to Docker Hub]
+    end
+
+    Push --> DevEnv[Dev Environment<br>Docker Compose]
+    Push --> ProdEnv[Production Environment<br>Kubernetes Kind]
+
+    subgraph Dev [Development Stack]
+        DevEnv --> DB_Dev[(PostgreSQL EC2<br>database: todolist_dev)]
+    end
+
+    subgraph Prod [Production Stack]
+        ProdEnv --> BackendPod[todolist-backend<br>3 replicas]
+        ProdEnv --> FrontendPod[todolist-frontend<br>2 replicas]
+        BackendPod --> DB_Prod[(PostgreSQL EC2<br>database: todolist_prod)]
+        FrontendPod --> DB_Prod
+    end
+
+    subgraph Monitoring [Observability Stack]
+        Prom[Prometheus]
+        Graf[Grafana]
+        Loki[Loki + Promtail]
+    end
+
+    DevEnv -.-> Monitoring
+    ProdEnv -.-> Monitoring
 
 ## 🔗 Repositories
 
