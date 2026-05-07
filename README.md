@@ -14,23 +14,23 @@ A production-grade DevOps implementation of a **TodoList Application** built wit
 ---
 
 ## 🏗️ Architecture Overview
-                ┌──────────────────────────────────────┐
-                │           GitHub Repositories        │
-                │  frontend-repo  │  backend-repo      │
-                └────────┬────────┴────────┬───────────┘
-                         │   Webhook       │
-                         ▼                 ▼
-                ┌─────────────────────────────────────┐
-                │          Jenkins CI/CD              │
-                │         (port 9080)                 │
-                │                                     │
-                │  Source → Build → Test+Lint+DepCheck│
-                │  → ImageScan → Push → Deploy Dev    │
-                │  → Approval → Deploy Prod           │
-                └──────────┬──────────────────────────┘
-                           │
-       ┌───────────────────┼───────────────────┐
-       ▼                   ▼                   ▼
+                    ┌──────────────────────────────────────┐
+                    │           GitHub Repositories        │
+                    │  frontend-repo  │  backend-repo      │
+                    └────────┬────────┴────────┬───────────┘
+                             │   Webhook        │
+                             ▼                  ▼
+                    ┌─────────────────────────────────────┐
+                    │          Jenkins CI/CD               │
+                    │         (port 9080)                  │
+                    │                                      │
+                    │  Source → Build → Test+Lint+DepCheck │
+                    │  → ImageScan → Push → Deploy Dev     │
+                    │  → Approval → Deploy Prod            │
+                    └──────────┬──────────────────────────┘
+                               │
+           ┌───────────────────┼───────────────────┐
+           ▼                   ▼                   ▼
 ┌──────────────────┐  ┌───────────────┐  ┌────────────────┐
 │   Dev Environment│  │  K8s (Kind)   │  │   Monitoring   │
 │  Docker Compose  │  │  Production   │  │    Stack       │
@@ -124,35 +124,35 @@ devops-bootcamp-configs/
 ## 🔄 CI/CD Pipeline
 
 ** Pipeline Stages**
-┌─────────┐   ┌───────┐   ┌───────────────────────┐
+─────────┐   ┌───────┐   ┌──────────────────────┐
 │ Source  │──▶│ Build │──▶│ Test & Quality Gate   │
 └─────────┘   └───────┘   │ (Parallel)            │
-                          │ ├── Unit Test         │
-                          │ ├── Linter            │
-                          │ └── Dependency Check  │
-                          └──────────┬────────────┘
-                          │
-                          ┌──────────▼────────────┐
-                          │   Push to Docker Hub  │
-                          └──────────┬────────────┘
-                          │
-                          ┌──────────▼────────────┐
-                          │   Image Scan (Trivy)  │
-                          └──────────┬────────────┘
-                          │
-                          ┌──────────▼────────────┐
-                          │   Deploy Dev          │
-                          │   (Docker Compose)    │
-                          └──────────┬────────────┘
-                          │
-                          ┌──────────▼────────────┐
-                          │   Manual Approval     │
-                          └──────────┬────────────┘
-                          │
-                          ┌──────────▼────────────┐
-                          │   Deploy Production   │
-                          │   (Kubernetes)        │
-                          └───────────────────────┘
+│ ├── Unit Test         │
+│ ├── Linter            │
+│ └── Dependency Check  │
+└──────────┬────────────┘
+│
+┌──────────▼────────────┐
+│   Push to Docker Hub  │
+└──────────┬────────────┘
+│
+┌──────────▼────────────┐
+│   Image Scan (Trivy)  │
+└──────────┬────────────┘
+│
+┌──────────▼────────────┐
+│   Deploy Dev          │
+│   (Docker Compose)    │
+└──────────┬────────────┘
+│
+┌──────────▼────────────┐
+│   Manual Approval     │
+└──────────┬────────────┘
+│
+┌──────────▼────────────┐
+│   Deploy Production   │
+│   (Kubernetes)        │
+└───────────────────────┘
 
 ### Key Features
 - ✅ **Webhook trigger**: Auto-build on push/PR
