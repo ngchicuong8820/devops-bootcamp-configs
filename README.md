@@ -14,7 +14,7 @@ A production-grade DevOps implementation of a **TodoList Application** built wit
 
 ## 🏗️ Architecture Overview
 ```mermaid
-
+flowchart TD
                     ┌──────────────────────────────────────┐
                     │           GitHub Repositories        │
                     │  frontend-repo  │  backend-repo      │
@@ -93,6 +93,7 @@ $$
 
 # ## 📁 Repository Structure
 ```mermaid
+flowchart TD
 devops-bootcamp-configs/
 ├── 📁 docker/
 │   └── docker-compose.dev.yml        # Dev environment
@@ -126,6 +127,7 @@ devops-bootcamp-configs/
 
 ## 🔄 CI/CD Pipeline
 ```mermaid
+flowchart TD
 ** Pipeline Stages**
 ─────────┐   ┌───────┐   ┌──────────────────────┐
 │ Source  │──▶│ Build │──▶│ Test & Quality Gate   │
