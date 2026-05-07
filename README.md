@@ -5,40 +5,23 @@
 
 ## 🏗️ Architecture Overview
 
-[Architecture-Overview.txt](https://github.com/user-attachments/files/27472891/Architecture-Overview.txt)
-                    ┌──────────────────────────────────────┐
-                    │           GitHub Repositories        │
-                    │  frontend-repo  │  backend-repo      │
-                    └────────┬────────┴────────┬───────────┘
-                             │   Webhook        │
-                             ▼                  ▼
-                    ┌─────────────────────────────────────┐
-                    │          Jenkins CI/CD               │
-                    │         (port 9080)                  │
-                    │                                      │
-                    │  Source → Build → Test+Lint+DepCheck │
-                    │  → ImageScan → Push → Deploy Dev     │
-                    │  → Approval → Deploy Prod            │
-                    └──────────┬──────────────────────────┘
-                               │
-           ┌───────────────────┼───────────────────┐
-           ▼                   ▼                   ▼
-┌──────────────────┐  ┌───────────────┐  ┌────────────────┐
-│   Dev Environment│  │  K8s (Kind)   │  │   Monitoring   │
-│  Docker Compose  │  │  Production   │  │    Stack       │
-│                  │  │               │  │                │
-│ todolist-backend │  │ backend x3    │  │ Prometheus     │
-│ todolist-frontend│  │ frontend x2   │  │ Grafana        │
-└────────┬─────────┘  └──────┬────────┘  │ Loki+Promtail  │
-         │                   │           └────────────────┘
-         └─────────┬─────────┘
-                   ▼
-        ┌──────────────────────┐
-        │      DB EC2          │
-        │  PostgreSQL          │
-        │  todolist_dev        │
-        │  todolist_prod       │
-        └──────────────────────┘
+```text
+Architecture-Overview.txt                  | GitHub
+Repositories || frontend-repo | backend-repo |
+[  Sơ đồ chi tiết của bạn tại đây ]        | Webhook | ▼▼
+                                             | Jenkins CI/CD || (port 9080) |||| Source
+→ Build → Test+Lint+DepCheck || → ImageScan → Push → Deploy Dev || → Approval → Deploy Prod |
+[ Sơ đồ chi tiết của bạn tại đây ]        | ▼▼▼▼▼
+
+[ Sơ đồ chi tiết của bạn tại đây ]        | Dev
+Environment|| K8s (Kind) || Monitoring || Docker Compose || Production || Stack |||||||| todolist-backend || backend x3 ||
+[ Sơ đồ chi tiết của bạn tại đây ]
+Prometheus || todolist-frontend | frontend x2 || Grafana |
+[ Sơ đồ chi tiết của bạn tại đây ]
+                                 | Loki+Promtail |||                     | DB EC2 || PostgreSQL ||
+todolist_dev || todolist_prod |
+[ Sơ đồ chi tiết của bạn tại đây ]
+\```
 
 ## 🔗 Repositories
 
